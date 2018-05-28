@@ -89,6 +89,12 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 
     [self.viewController.view addSubview:self.webview];
 
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:CGRectMake(10, 10, 50, 50)];
+    btn.layer.cornerRadius = 0.5 * btn.bounds.size.width;
+
+    [self.viewController.view addSubview:self.btn];
+
     [self navigate:call];
 }
 

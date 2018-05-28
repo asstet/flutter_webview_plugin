@@ -39,8 +39,6 @@ class FlutterWebviewPlugin {
         _onUrlChanged.add(call.arguments["url"]);
         break;
       case "onState":
-        print(call);
-        print(call.arguments);
         _onStateChanged.add(new WebViewStateChanged.fromMap(call.arguments));
         break;
       case "onError":

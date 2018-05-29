@@ -89,11 +89,13 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
 
     [self.viewController.view addSubview:self.webview];
 
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:CGRectMake(10, 10, 50, 50)];
-    btn.layer.cornerRadius = 0.5 * btn.bounds.size.width;
+    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.closeButton setFrame:CGRectMake(10, 40, 50, 50)];
+    self.closeButton.layer.cornerRadius = 0.5 * self.closeButton.bounds.size.width;
+    [self.closeButton setTitle:@"x" forState:UIControlStateNormal];
+    [self.closeButton addTarget:self action:@selector(onClose) forControlEvents:UIControlEventTouchUpInside];
 
-    [self.viewController.view addSubview: btn];
+    [self.viewController.view addSubview: self.closeButton];
 
     [self navigate:call];
 }
@@ -144,6 +146,13 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
         // manually trigger onDestroy
         [channel invokeMethod:@"onDestroy" arguments:nil];
     }
+    if (self.closeButton != nil) {
+      self.closeButton = nil;
+    }
+}
+
+- (void)onClose {
+  [channel invokeMethod:@"onClose" arguments:nil];
 }
 
 #pragma mark -- WkWebView Delegate

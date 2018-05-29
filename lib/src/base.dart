@@ -21,6 +21,7 @@ class FlutterWebviewPlugin {
   final _onUrlChanged = new StreamController<String>.broadcast();
   final _onStateChanged = new StreamController<WebViewStateChanged>.broadcast();
   final _onError = new StreamController<String>.broadcast();
+  final _onClose = new StreamController<Null>.broadcast();
 
   static FlutterWebviewPlugin _instance;
 
@@ -44,11 +45,15 @@ class FlutterWebviewPlugin {
       case "onError":
         _onError.add(call.arguments);
         break;
+      case "onClose":
+        _onClose.add(null);
+        break;
     }
   }
 
   /// Listening the OnDestroy LifeCycle Event for Android
   Stream<Null> get onDestroy => _onDestroy.stream;
+  Stream<Null> get onClose => _onClose.stream;
 
   /// Listening url changed
   Stream<String> get onUrlChanged => _onUrlChanged.stream;
@@ -120,6 +125,7 @@ class FlutterWebviewPlugin {
     _onUrlChanged.close();
     _onStateChanged.close();
     _onError.close();
+    _onClose.close();
     _instance = null;
   }
 

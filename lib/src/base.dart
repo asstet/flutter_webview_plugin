@@ -46,7 +46,7 @@ class FlutterWebviewPlugin {
         _onError.add(call.arguments);
         break;
       case "onClose":
-        _onClose.add(call.arguments);
+        _onClose.add(null);
         break;
     }
   }

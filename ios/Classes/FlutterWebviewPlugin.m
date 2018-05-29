@@ -90,7 +90,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     [self.viewController.view addSubview:self.webview];
 
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.closeButton setFrame:CGRectMake(rc.minX + 40, rc.minY + 40, 50, 50)];
+    [self.closeButton setFrame:CGRectMake(rc.origin.x + 40, rc.origin.y + 40, 50, 50)];
     self.closeButton.layer.cornerRadius = 0.5 * self.closeButton.bounds.size.width;
     [self.closeButton setTitle:@"x" forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(onClose) forControlEvents:UIControlEventTouchUpInside];

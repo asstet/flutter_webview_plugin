@@ -21,7 +21,7 @@ class FlutterWebviewPlugin {
   final _onUrlChanged = new StreamController<String>.broadcast();
   final _onStateChanged = new StreamController<WebViewStateChanged>.broadcast();
   final _onError = new StreamController<String>.broadcast();
-  final _onClose = new StreamController<Null>.broadcast();
+  final _onClose = new StreamController<String>.broadcast();
 
   static FlutterWebviewPlugin _instance;
 
@@ -46,7 +46,7 @@ class FlutterWebviewPlugin {
         _onError.add(call.arguments);
         break;
       case "onClose":
-        _onClose.add(null);
+        _onClose.add(call.arguments);
         break;
     }
   }

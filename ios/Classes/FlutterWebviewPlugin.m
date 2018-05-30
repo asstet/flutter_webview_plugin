@@ -143,11 +143,11 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
         self.webview.navigationDelegate = nil;
         self.webview = nil;
 
+        [self.closeButton removeFromSuperview];
+        self.closeButton = nil;
+
         // manually trigger onDestroy
         [channel invokeMethod:@"onDestroy" arguments:nil];
-    }
-    if (self.closeButton != nil) {
-      self.closeButton = nil;
     }
 }
 
